@@ -1,377 +1,305 @@
-openapi: "3.0.3"
+openapi: 3.0.3
 info:
-  title: ЦКД — HTTP-сервисы
-  description: |
-    Центр Кадастровых Данных (ЦКД) — HTTP-сервисы для интеграции с 1С ERP и CRM.
-    Мастер-система кадастровых данных ЕГРН, push-модель обмена.
-  version: "1.0.0"
-  contact:
-    name: Команда ЦКД
-    email: ckd@a101.ru
-
-servers:
-  - url: http://localhost:8080/hs/ckd/v1
-    description: Локальная среда (демо)
-
-tags:
-  - name: land-plots
-    description: Экспорт земельных участков в ERP
-  - name: objects
-    description: Экспорт объектов с помещениями в CRM
-  - name: references
-    description: Справочные данные
-  - name: monitoring
-    description: Мониторинг и статистика обмена
+  title: CKD Unit Extract API
+  version: 1.0.0
+  description: API передачи данных помещений из ЦКД в CRM
 
 paths:
-  /land-plots/export:
+  /unit-extract:
     post:
-      tags: [land-plots]
-      summary: Экспорт земельного участка в ERP
-      operationId: postLandExportRequest
-      description: |
-        Передаёт данные ЗУ (кадастровый номер, площадь, права, обременения)
-        в 1С ERP для учёта земельного банка. Формирует запись в exchange_log.
+      summary: Передача данных помещений
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/LandExportRequest'
+              $ref: '#/components/schemas/UnitExtractMessage'
             example:
-              cadastral_number: "77:17:0120114:1001"
-              include_rights: true
-              include_encumbrances: true
+              messageId: "9c7a2f10-1234-4bcd-9999-123456789000"
+              sourceSystem: "CKD"
+              sentAt: "2026-03-01T12:00:00+03:00"
+              dataType: "UNIT_EXTRACT"
+              batchId: "UNIT_BATCH_001"
+              batchNumber: 1
+              batchTotal: 1
+              object:
+                objectId: "ППТ1-4_"
+                cadastralNumber: "77:17:0120316:84160"
+                name: "Многоквартирный дом"
+              units:
+                - unitType: "Помещение"
+                  usageType: "Нежилое"
+                  cadastralNumber: "77:17:0120316:84378"
+                  roomNumber: "42"
+                  floor: 1
+                  area: 96.2
+                  cadastralValue: 6150165.09
+                  address:
+                    readableAddress: "Российская Федерация, город Москва, вн.тер.г. муниципальный округ Коммунарка, квартал 160, дом 1В, корпус 2, помещение 42Н"
+                    region: "Москва"
+                    city: "муниципальный округ Коммунарка"
+                  rights:
+                    - rightType: "Собственность"
+                      registrationNumber: "77:17:0120316:84378-77/060/2025-1"
+                      registrationDate: "2025-12-25"
+                      rightHolder:
+                        name: "ООО \"СПЕЦИАЛИЗИРОВАННЫЙ ЗАСТРОЙЩИК \"А101\""
+                        inn: "7751172550"
+                        ogrn: "1197746656095"
+                        counterpartyType: "Юридическое лицо"
+                      documentBasis: "Разрешение на ввод объекта в эксплуатацию №77-17-012573-2025"
+                  restrictions:
+                    - type: "Ипотека"
+                      registrationNumber: "77:17:0120316:84378-77/060/2025-9"
+                      registrationDate: "2025-12-25"
+                      startDate: "2024-04-17"
+                      endDate: "2025-12-19"
+                      contractor:
+                        name: "АО \"Российский Сельскохозяйственный банк\""
+                        inn: "7725114488"
+                        ogrn: "1027700342890"
+                        counterpartyType: "Юридическое лицо"
+
+                - unitType: "Машино-место"
+                  usageType: ""
+                  cadastralNumber: "77:17:0130206:13780"
+                  roomNumber: "130"
+                  floor: -1
+                  area: 13.3
+                  cadastralValue: 417452.42
+                  address:
+                    readableAddress: "Российская Федерация, город Москва, вн.тер.г. муниципальный округ Коммунарка, пр-кт Куприна, д. 7, к. 2, м/м 130"
+                    region: "Москва"
+                  rights:
+                    - rightType: "Собственность"
+                      registrationNumber: "77:17:011230206:13780-77/060/2025-1"
+                      registrationDate: "2025-05-20"
+                      rightHolder:
+                        name: "ООО СПЕЦИАЛИЗИРОВАННЫЙ ЗАСТРОЙЩИК "
+                        inn: "7751114550"
+                        ogrn: "1197744156095"
+                        counterpartyType: "Юридическое лицо"
+                  restrictions:
+                    - type: "Ипотека"
+                      registrationNumber: "77:17:011230206:13780-77/060/2025-9"
+                      registrationDate: "2025-05-20"
+                      startDate: "2024-04-17"
+                      endDate: "2026-12-21"
+                      contractor:
+                        name: "АО \"Российский Сельскохозяйственный банк\""
+                        inn: "7725117488"
+                        ogrn: "1027702642890"
+                        counterpartyType: "Юридическое лицо"
+
+              extract:
+                extractDate: "2025-12-22"
+
       responses:
         '200':
-          description: Данные успешно переданы в ERP
+          description: Успешная обработка сообщения
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ExportResponse'
               example:
                 status: "SUCCESS"
-                exchange_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
-                target_system: "ERP"
-                message: "Земельный участок 77:17:0120114:1001 передан в ERP"
-        '404':
-          description: Объект не найден
+                message: "Объект и помещения успешно обработаны"
+                processedRooms: 2
+
+        '400':
+          description: Ошибка валидации входных данных
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                errorCode: "VALIDATION_ERROR"
+                message: "Поле rooms не может быть пустым"
+
+        '404':
+          description: Объект или помещение не найдено
+          content:
+            application/json:
+              example:
+                errorCode: "NOT_FOUND"
+                message: "Объект или помещение не найдено"
+
         '500':
-          description: Ошибка при передаче
+          description: Внутренняя ошибка сервера
           content:
             application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /objects/export:
-    post:
-      tags: [objects]
-      summary: Экспорт объекта с помещениями в CRM
-      operationId: objectWithRoomsRequest
-      description: |
-        Передаёт данные здания с вложенными помещениями в 1С CRM.
-        Используется для актуализации каталога квартир/помещений.
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/ObjectWithRoomsRequest'
-            example:
-              cadastral_number: "77:17:0120114:2001"
-              include_rooms: true
-              include_rights: true
-      responses:
-        '200':
-          description: Данные успешно переданы в CRM
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ExportResponse'
               example:
-                status: "SUCCESS"
-                exchange_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
-                target_system: "CRM"
-                message: "Здание 77:17:0120114:2001 с 2 помещениями передано в CRM"
-        '404':
-          description: Объект не найден
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-
-  /objects/{cadastral_number}:
-    get:
-      tags: [objects]
-      summary: Получить объект по кадастровому номеру
-      operationId: getObjectByCadastralNumber
-      parameters:
-        - name: cadastral_number
-          in: path
-          required: true
-          schema:
-            type: string
-          example: "77:17:0120114:1001"
-      responses:
-        '200':
-          description: Данные объекта
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/RealEstateObject'
-        '404':
-          description: Объект не найден
-
-  /objects/{cadastral_number}/rights:
-    get:
-      tags: [objects]
-      summary: Актуальные права на объект
-      operationId: getObjectRights
-      parameters:
-        - name: cadastral_number
-          in: path
-          required: true
-          schema:
-            type: string
-          example: "77:17:0120114:1001"
-      responses:
-        '200':
-          description: Список актуальных прав
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/RightRecord'
-
-  /objects/{cadastral_number}/encumbrances:
-    get:
-      tags: [objects]
-      summary: Актуальные обременения объекта
-      operationId: getObjectEncumbrances
-      parameters:
-        - name: cadastral_number
-          in: path
-          required: true
-          schema:
-            type: string
-          example: "77:17:0120114:1001"
-      responses:
-        '200':
-          description: Список актуальных обременений
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/EncumbranceRecord'
-
-  /references/object-types:
-    get:
-      tags: [references]
-      summary: Справочник типов объектов
-      operationId: getObjectTypes
-      responses:
-        '200':
-          description: Список типов
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ReferenceItem'
-              example:
-                - id: 1
-                  code: "LAND_PLOT"
-                  name: "Земельный участок"
-                - id: 2
-                  code: "BUILDING"
-                  name: "Здание"
-                - id: 3
-                  code: "ROOM"
-                  name: "Помещение"
-
-  /exchange/log:
-    get:
-      tags: [monitoring]
-      summary: Лог обмена с ERP/CRM
-      operationId: getExchangeLog
-      parameters:
-        - name: target_system
-          in: query
-          schema:
-            type: string
-            enum: [ERP, CRM]
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum: [PENDING, SENT, SUCCESS, ERROR, RETRY]
-        - name: limit
-          in: query
-          schema:
-            type: integer
-            default: 50
-      responses:
-        '200':
-          description: Записи лога обмена
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/ExchangeLogEntry'
+                errorCode: "INTERNAL_ERROR"
+                message: "Ошибка обработки данных"
 
 components:
   schemas:
-    LandExportRequest:
-      type: object
-      required: [cadastral_number]
-      properties:
-        cadastral_number:
-          type: string
-          description: Кадастровый номер ЗУ
-          example: "77:17:0120114:1001"
-        include_rights:
-          type: boolean
-          default: true
-          description: Включить актуальные права
-        include_encumbrances:
-          type: boolean
-          default: true
-          description: Включить актуальные обременения
 
-    ObjectWithRoomsRequest:
+    UnitExtractMessage:
       type: object
-      required: [cadastral_number]
+      required:
+        - messageId
+        - sourceSystem
+        - sentAt
+        - units
       properties:
-        cadastral_number:
+        messageId:
           type: string
-          description: Кадастровый номер здания
-          example: "77:17:0120114:2001"
-        include_rooms:
-          type: boolean
-          default: true
-          description: Включить вложенные помещения
-        include_rights:
-          type: boolean
-          default: false
-          description: Включить права на помещения
+        sourceSystem:
+          type: string
+        sentAt:
+          type: string
+          format: date-time
+        dataType:
+          type: string
+        batchId:
+          type: string
+        batchNumber:
+          type: integer
+        batchTotal:
+          type: integer
 
-    ExportResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          enum: [SUCCESS, ERROR, QUEUED]
-        exchange_id:
-          type: string
-          format: uuid
-          description: ID записи в exchange_log
-        target_system:
-          type: string
-          enum: [ERP, CRM]
-        message:
-          type: string
+        object:
+          $ref: '#/components/schemas/ObjectInfo'
 
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          type: string
-          example: "ERROR"
-        code:
-          type: string
-          example: "OBJECT_NOT_FOUND"
-        message:
-          type: string
-          example: "Объект с кадастровым номером 77:17:0120114:9999 не найден"
-
-    RealEstateObject:
-      type: object
-      properties:
-        id:
-          type: string
-          format: uuid
-        cadastral_number:
-          type: string
-        object_type:
-          type: string
-        address:
-          type: string
-        area:
-          type: number
-        area_unit:
-          type: string
-        status:
-          type: string
-        children:
+        units:
           type: array
           items:
-            $ref: '#/components/schemas/RealEstateObject'
+            $ref: '#/components/schemas/Unit'
 
-    RightRecord:
+        extract:
+          $ref: '#/components/schemas/ExtractInfo'
+
+    ObjectInfo:
       type: object
       properties:
-        right_type:
+        objectId:
           type: string
-        registration_number:
-          type: string
-        registration_date:
-          type: string
-          format: date
-        holder_name:
-          type: string
-        holder_inn:
-          type: string
-
-    EncumbranceRecord:
-      type: object
-      properties:
-        encumbrance_type:
-          type: string
-        registration_number:
-          type: string
-        start_date:
-          type: string
-          format: date
-        end_date:
-          type: string
-          format: date
-        holder_name:
-          type: string
-
-    ReferenceItem:
-      type: object
-      properties:
-        id:
-          type: integer
-        code:
+        cadastralNumber:
           type: string
         name:
           type: string
 
-    ExchangeLogEntry:
+    Unit:
       type: object
+      required:
+        - cadastralNumber
+        - unitType
+        - roomNumber
       properties:
-        id:
+        unitType:
+          type: string
+          example: "Помещение"
+        usageType:
+          type: string
+          enum: ["Жилое", "Нежилое"]
+        cadastralNumber:
+          type: string
+        roomNumber:
+          type: string
+        floor:
+          type: integer
+        area:
+          type: number
+        cadastralValue:
+          type: number
+
+        address:
+          $ref: '#/components/schemas/Address'
+
+        rights:
+          type: array
+          items:
+            $ref: '#/components/schemas/Right'
+
+        restrictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Restriction'
+
+    Address:
+      type: object
+      required:
+        - readableAddress
+      properties:
+        garId:
           type: string
           format: uuid
-        direction:
+          nullable: true
+        fiasId:
           type: string
-          enum: [OUTBOUND, INBOUND]
-        target_system:
+          format: uuid
+          nullable: true
+        readableAddress:
           type: string
-        operation:
+        city:
           type: string
-        http_status:
-          type: integer
-        status:
+        region:
           type: string
-        created_at:
+        regionType:
           type: string
-          format: date-time
+        district:
+          type: string
+        districtType:
+          type: string
+        street:
+          type: string
+        streetType:
+          type: string
+        houseType:
+          type: string
+        houseNumber:
+          type: string
+        oktmo:
+          type: string
+        okato:
+          type: string
+
+    Right:
+      type: object
+      properties:
+        rightType:
+          type: string
+        registrationNumber:
+          type: string
+        registrationDate:
+          type: string
+          format: date
+        rightHolder:
+          $ref: '#/components/schemas/RightHolder'
+        documentBasis:
+          type: string
+
+    RightHolder:
+      type: object
+      properties:
+        name:
+          type: string
+        inn:
+          type: string
+        ogrn:
+          type: string
+        counterpartyType:
+          type: string
+
+    Restriction:
+      type: object
+      properties:
+        type:
+          type: string
+        registrationNumber:
+          type: string
+        registrationDate:
+          type: string
+          format: date
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        contractor:
+          $ref: '#/components/schemas/RightHolder'
+
+    ExtractInfo:
+      type: object
+      properties:
+        extractDate:
+          type: string
+          format: date
