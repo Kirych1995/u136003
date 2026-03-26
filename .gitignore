@@ -1,0 +1,14 @@
+# Archi temp files
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+desktop.ini
