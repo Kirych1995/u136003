@@ -1,0 +1,186 @@
+"ID","Type","Name","Documentation","Specialization"
+"c854e740-b5ac-443f-a9eb-ecb13871aa00","Grouping","Справочники (ref)","Схема БД: ref",""
+"897b30bb-5bde-4da4-9c5a-d2eab596e3c1","Grouping","Кадастровый учёт (cadastre)","Схема БД: cadastre",""
+"95cf9913-9e15-4eea-bd51-5a6085f66b08","Grouping","Заявления (statements)","Схема БД: statements",""
+"607d8645-7ce8-4a9d-9dfb-9431dbdf14ee","Grouping","Интеграция ERP/CRM (integration)","Схема БД: integration",""
+"522ac0e1-9eed-4459-90e0-e5d9772c4ce7","Grouping","Росреестр (rosreestr)","Схема БД: rosreestr",""
+"b91c3968-d357-405a-9eb8-19503307515c","Grouping","Файловое хранилище (storage)","Схема БД: storage",""
+"8eb34ba0-a582-4db9-ab68-5b7d234abe1b","DataObject","ref.object_type","Справочник типов объектов недвижимости
+
+Колонки:
+• id SERIAL [PK]
+• code VARCHAR(50) [NOT NULL]
+• name VARCHAR(200) [NOT NULL]
+• description TEXT",""
+"0d25a91b-e708-4fa9-8939-76b8d62dcc6a","DataObject","ref.right_type","Справочник видов прав
+
+Колонки:
+• id SERIAL [PK]
+• code VARCHAR(50) [NOT NULL]
+• name VARCHAR(200) [NOT NULL]",""
+"5bf48b35-f78c-483a-a8d4-cf9b33216231","DataObject","ref.encumbrance_type","Справочник видов обременений
+
+Колонки:
+• id SERIAL [PK]
+• code VARCHAR(50) [NOT NULL]
+• name VARCHAR(200) [NOT NULL]",""
+"88d88be6-5523-41ca-8a6f-38ca695c42d2","DataObject","ref.exchange_status","Справочник статусов обмена
+
+Колонки:
+• id SERIAL [PK]
+• code VARCHAR(50) [NOT NULL]
+• name VARCHAR(200) [NOT NULL]",""
+"7f98036a-ee90-4adb-8602-f12a083fe591","DataObject","ref.statement_status","Справочник статусов заявлений
+
+Колонки:
+• id SERIAL [PK]
+• code VARCHAR(50) [NOT NULL]
+• name VARCHAR(200) [NOT NULL]",""
+"2548639c-f793-469c-9acd-66747c83e7fb","DataObject","cadastre.real_estate_object","D1: Справочник объектов недвижимости (BO: ЗУ, Здание, Помещение)
+
+Колонки:
+• id UUID [PK]
+• cadastral_number VARCHAR(30) [NOT NULL]
+• object_type_id INT [NOT NULL]
+• address TEXT
+• area NUMERIC(15,2)
+• area_unit VARCHAR(10)
+• parent_id UUID
+• status VARCHAR(30)
+• created_at TIMESTAMPTZ
+• updated_at TIMESTAMPTZ",""
+"9ad1f077-ad9d-42f4-ab92-39f1266d284d","DataObject","cadastre.cadastral_info_version","D2: Версии кадастровой информации (BO: Версия КИ)
+
+Колонки:
+• id UUID [PK]
+• object_id UUID [NOT NULL]
+• version_number INT [NOT NULL]
+• change_type VARCHAR(50) [NOT NULL]
+• extract_date DATE
+• source_file TEXT
+• is_current BOOLEAN
+• created_at TIMESTAMPTZ
+• created_by VARCHAR(200)",""
+"1156eae1-d7f4-4989-8e49-15766d4956fb","DataObject","cadastre.right_record","D3: Регистр прав на объекты недвижимости (BO: Право)
+
+Колонки:
+• id UUID [PK]
+• object_id UUID [NOT NULL]
+• right_type_id INT [NOT NULL]
+• registration_number VARCHAR(100)
+• registration_date DATE
+• holder_name TEXT [NOT NULL]
+• holder_inn VARCHAR(12)
+• share_numerator INT
+• share_denominator INT
+• version_id UUID
+• is_active BOOLEAN
+• created_at TIMESTAMPTZ
+• updated_at TIMESTAMPTZ",""
+"de1dcced-b98c-44b2-9e57-c613b57fc928","DataObject","cadastre.encumbrance_record","D3: Регистр обременений объектов недвижимости (BO: Обременение)
+
+Колонки:
+• id UUID [PK]
+• object_id UUID [NOT NULL]
+• encumbrance_type_id INT [NOT NULL]
+• registration_number VARCHAR(100)
+• registration_date DATE
+• start_date DATE
+• end_date DATE
+• holder_name TEXT
+• description TEXT
+• version_id UUID
+• is_active BOOLEAN
+• created_at TIMESTAMPTZ
+• updated_at TIMESTAMPTZ",""
+"bd26b0c8-611d-49af-be9d-cb3285c1710c","DataObject","statements.statement","D9: Регистр заявлений (BO: Заявление)
+
+Колонки:
+• id UUID [PK]
+• number VARCHAR(50) [NOT NULL]
+• statement_type VARCHAR(50) [NOT NULL]
+• object_id UUID
+• status_id INT [NOT NULL]
+• initiator_name TEXT [NOT NULL]
+• initiator_email VARCHAR(200)
+• signer_name TEXT
+• signer_position VARCHAR(200)
+• signed_at TIMESTAMPTZ
+• sent_at TIMESTAMPTZ
+• rosreestr_id VARCHAR(100)
+• created_at TIMESTAMPTZ
+• updated_at TIMESTAMPTZ",""
+"0cb2f35c-9192-4b96-a5c6-64c158d74567","DataObject","statements.statement_approval","D9: Маршрут согласования заявления
+
+Колонки:
+• id UUID [PK]
+• statement_id UUID [NOT NULL]
+• approver_name TEXT [NOT NULL]
+• approver_role VARCHAR(100)
+• decision VARCHAR(20) [NOT NULL]
+• comment TEXT
+• decided_at TIMESTAMPTZ",""
+"f0d6aa4c-ac63-4ee5-b7c4-b4b2032fc744","DataObject","integration.exchange_log","D6: Лог обмена с ERP и CRM (DO: PostLandExportRequest, ObjectWithRoomsRequest)
+
+Колонки:
+• id UUID [PK]
+• direction VARCHAR(10) [NOT NULL]
+• target_system VARCHAR(30) [NOT NULL]
+• operation VARCHAR(100) [NOT NULL]
+• endpoint_url TEXT
+• request_body JSONB
+• response_body JSONB
+• http_status INT
+• status_id INT [NOT NULL]
+• error_message TEXT
+• object_id UUID
+• retry_count INT
+• correlation_id UUID
+• created_at TIMESTAMPTZ
+• completed_at TIMESTAMPTZ",""
+"58ee557f-4419-4874-af78-28f0bbd2a3de","DataObject","integration.export_queue","D6: Очередь отправки данных в ERP/CRM
+
+Колонки:
+• id UUID [PK]
+• object_id UUID [NOT NULL]
+• target_system VARCHAR(30) [NOT NULL]
+• operation VARCHAR(100) [NOT NULL]
+• priority INT
+• payload JSONB [NOT NULL]
+• status VARCHAR(20)
+• scheduled_at TIMESTAMPTZ
+• picked_at TIMESTAMPTZ
+• exchange_log_id UUID
+• created_at TIMESTAMPTZ",""
+"47b06c28-1337-4d43-b837-e440e1137a2d","DataObject","rosreestr.request_log","D8: Лог запросов к Росреестру
+
+Колонки:
+• id UUID [PK]
+• request_type VARCHAR(50) [NOT NULL]
+• cadastral_number VARCHAR(30)
+• object_id UUID
+• statement_id UUID
+• status VARCHAR(30)
+• external_id VARCHAR(200)
+• request_xml TEXT
+• response_xml TEXT
+• error_message TEXT
+• created_at TIMESTAMPTZ
+• updated_at TIMESTAMPTZ",""
+"a6dbdc8f-3695-4fce-bff3-d876233f7ab3","DataObject","storage.file_metadata","D7: Метаданные файлов (выписки ЕГРН, XML, подписи)
+
+Колонки:
+• id UUID [PK]
+• file_name VARCHAR(500) [NOT NULL]
+• file_type VARCHAR(50) [NOT NULL]
+• mime_type VARCHAR(100)
+• file_size BIGINT
+• sha256_hash VARCHAR(64)
+• s3_bucket VARCHAR(200)
+• s3_key VARCHAR(500)
+• object_id UUID
+• version_id UUID
+• uploaded_by VARCHAR(200)
+• created_at TIMESTAMPTZ",""
+"a3b4cbc0-ba99-404c-98c2-619723c5dcb1","DataObject","cadastre.v_current_rights (view)","Витрина: актуальные права на объекты недвижимости",""
+"a84337e5-1fb2-4764-873a-903480e80528","DataObject","cadastre.v_active_encumbrances (view)","Витрина: актуальные обременения объектов",""
