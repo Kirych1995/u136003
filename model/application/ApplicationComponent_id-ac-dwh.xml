@@ -1,0 +1,8 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="DWH"
+    id="id-ac-dwh"
+    documentation="Корпоративное хранилище данных. Источники: CRM, ERP, Jira, MS Project.">
+  <properties
+      key="cmdb_id"/>
+</archimate:ApplicationComponent>

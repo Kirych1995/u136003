@@ -1,0 +1,5 @@
+<archimate:BusinessService
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Передача данных в CRM"
+    id="id-bs-export-crm"
+    documentation="Передача данных по объектам с помещениями в 1С:CRM"/>

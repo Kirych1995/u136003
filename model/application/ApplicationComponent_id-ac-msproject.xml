@@ -1,0 +1,8 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="MS Project Server"
+    id="id-ac-msproject"
+    documentation="Управление проектами строительства">
+  <properties
+      key="cmdb_id"/>
+</archimate:ApplicationComponent>

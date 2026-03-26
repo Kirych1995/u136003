@@ -1,0 +1,5 @@
+<archimate:BusinessService
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Управление кадастровыми данными"
+    id="id-bs-cadastre"
+    documentation="Централизованное управление данными ЕГРН по объектам недвижимости А101"/>

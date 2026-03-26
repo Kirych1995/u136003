@@ -1,0 +1,5 @@
+<archimate:BusinessService
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Визуализация ГИС-данных"
+    id="id-bs-gis"
+    documentation="Отображение земельных участков, обременений и статусов на карте"/>

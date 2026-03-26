@@ -1,0 +1,12 @@
+<archimate:AccessRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="W"
+    id="id-rel-051">
+  <source
+      xsi:type="archimate:ApplicationInterface"
+      href="ApplicationInterface_id-ai-ckd-erp.xml#id-ai-ckd-erp"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_id-do-land-export.xml#id-do-land-export"/>
+</archimate:AccessRelationship>

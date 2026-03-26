@@ -1,0 +1,12 @@
+<archimate:AssociationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="FK → cadastre.cadastral_info_version"
+    id="e7be2e1d-f747-4977-8943-d3831eff2fea">
+  <source
+      xsi:type="archimate:DataObject"
+      href="DataObject_a6dbdc8f-3695-4fce-bff3-d876233f7ab3.xml#a6dbdc8f-3695-4fce-bff3-d876233f7ab3"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_9ad1f077-ad9d-42f4-ab92-39f1266d284d.xml#9ad1f077-ad9d-42f4-ab92-39f1266d284d"/>
+</archimate:AssociationRelationship>

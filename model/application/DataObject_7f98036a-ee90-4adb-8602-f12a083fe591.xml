@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ref.statement_status"
+    id="7f98036a-ee90-4adb-8602-f12a083fe591"
+    documentation="Справочник статусов заявлений&#xA;&#xA;Колонки:&#xA;• id SERIAL [PK]&#xA;• code VARCHAR(50) [NOT NULL]&#xA;• name VARCHAR(200) [NOT NULL]"/>

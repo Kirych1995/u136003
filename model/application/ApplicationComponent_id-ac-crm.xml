@@ -1,0 +1,11 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1С:CRM"
+    id="id-ac-crm"
+    documentation="Мастер-система коммерческих данных">
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="platform"
+      value="1С:Предприятие"/>
+</archimate:ApplicationComponent>

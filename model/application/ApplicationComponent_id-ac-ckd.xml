@@ -1,0 +1,11 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ЦКД"
+    id="id-ac-ckd"
+    documentation="Центр Кадастровых Данных — мастер-система данных ЕГРН. Конфигурация 1С.">
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="platform"
+      value="1С:Предприятие"/>
+</archimate:ApplicationComponent>

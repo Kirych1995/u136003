@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ref.encumbrance_type"
+    id="5bf48b35-f78c-483a-a8d4-cf9b33216231"
+    documentation="Справочник видов обременений&#xA;&#xA;Колонки:&#xA;• id SERIAL [PK]&#xA;• code VARCHAR(50) [NOT NULL]&#xA;• name VARCHAR(200) [NOT NULL]"/>

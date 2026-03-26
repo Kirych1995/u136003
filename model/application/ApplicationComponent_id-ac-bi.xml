@@ -1,0 +1,8 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="BI"
+    id="id-ac-bi"
+    documentation="Бизнес-аналитика. Подключена к DWH.">
+  <properties
+      key="cmdb_id"/>
+</archimate:ApplicationComponent>

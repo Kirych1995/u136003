@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Помещение"
+    id="id-bo-room"
+    documentation="BO: Помещение — жилое/нежилое помещение в здании">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

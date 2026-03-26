@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="cadastre.encumbrance_record"
+    id="de1dcced-b98c-44b2-9e57-c613b57fc928"
+    documentation="D3: Регистр обременений объектов недвижимости (BO: Обременение)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• object_id UUID [NOT NULL]&#xA;• encumbrance_type_id INT [NOT NULL]&#xA;• registration_number VARCHAR(100)&#xA;• registration_date DATE&#xA;• start_date DATE&#xA;• end_date DATE&#xA;• holder_name TEXT&#xA;• description TEXT&#xA;• version_id UUID&#xA;• is_active BOOLEAN&#xA;• created_at TIMESTAMPTZ&#xA;• updated_at TIMESTAMPTZ"/>

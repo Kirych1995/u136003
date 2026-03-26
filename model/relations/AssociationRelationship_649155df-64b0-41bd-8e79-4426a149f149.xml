@@ -1,0 +1,12 @@
+<archimate:AssociationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="FK → ref.encumbrance_type"
+    id="649155df-64b0-41bd-8e79-4426a149f149">
+  <source
+      xsi:type="archimate:DataObject"
+      href="DataObject_de1dcced-b98c-44b2-9e57-c613b57fc928.xml#de1dcced-b98c-44b2-9e57-c613b57fc928"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_5bf48b35-f78c-483a-a8d4-cf9b33216231.xml#5bf48b35-f78c-483a-a8d4-cf9b33216231"/>
+</archimate:AssociationRelationship>

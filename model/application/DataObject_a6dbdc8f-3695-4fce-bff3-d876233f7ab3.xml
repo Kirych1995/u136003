@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="storage.file_metadata"
+    id="a6dbdc8f-3695-4fce-bff3-d876233f7ab3"
+    documentation="D7: Метаданные файлов (выписки ЕГРН, XML, подписи)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• file_name VARCHAR(500) [NOT NULL]&#xA;• file_type VARCHAR(50) [NOT NULL]&#xA;• mime_type VARCHAR(100)&#xA;• file_size BIGINT&#xA;• sha256_hash VARCHAR(64)&#xA;• s3_bucket VARCHAR(200)&#xA;• s3_key VARCHAR(500)&#xA;• object_id UUID&#xA;• version_id UUID&#xA;• uploaded_by VARCHAR(200)&#xA;• created_at TIMESTAMPTZ"/>

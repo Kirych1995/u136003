@@ -1,0 +1,5 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Модуль заявлений"
+    id="id-ac-ckd-statements"
+    documentation="Формирование, согласование и отправка заявлений в Росреестр"/>

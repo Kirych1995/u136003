@@ -1,0 +1,11 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="1С:ERP"
+    id="id-ac-erp"
+    documentation="Мастер-система учётных данных">
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="platform"
+      value="1С:Предприятие"/>
+</archimate:ApplicationComponent>

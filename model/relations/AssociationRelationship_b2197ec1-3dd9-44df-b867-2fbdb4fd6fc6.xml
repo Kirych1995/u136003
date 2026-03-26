@@ -1,0 +1,12 @@
+<archimate:AssociationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="FK → ref.statement_status"
+    id="b2197ec1-3dd9-44df-b867-2fbdb4fd6fc6">
+  <source
+      xsi:type="archimate:DataObject"
+      href="DataObject_bd26b0c8-611d-49af-be9d-cb3285c1710c.xml#bd26b0c8-611d-49af-be9d-cb3285c1710c"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_7f98036a-ee90-4adb-8602-f12a083fe591.xml#7f98036a-ee90-4adb-8602-f12a083fe591"/>
+</archimate:AssociationRelationship>

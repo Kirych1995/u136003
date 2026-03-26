@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D7: Файловое хранилище"
+    id="id-do-d7"
+    documentation="storage.file_metadata">
+  <properties
+      key="schema"
+      value="storage"/>
+  <properties
+      key="table"
+      value="file_metadata"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

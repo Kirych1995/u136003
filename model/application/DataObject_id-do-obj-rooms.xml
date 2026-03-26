@@ -1,0 +1,12 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ObjectWithRoomsRequest"
+    id="id-do-obj-rooms"
+    documentation="JSON-контракт: объект с помещениями → CRM">
+  <properties
+      key="format"
+      value="JSON"/>
+  <properties
+      key="direction"
+      value="ЦКД → CRM"/>
+</archimate:DataObject>

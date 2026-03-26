@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="rosreestr.request_log"
+    id="47b06c28-1337-4d43-b837-e440e1137a2d"
+    documentation="D8: Лог запросов к Росреестру&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• request_type VARCHAR(50) [NOT NULL]&#xA;• cadastral_number VARCHAR(30)&#xA;• object_id UUID&#xA;• statement_id UUID&#xA;• status VARCHAR(30)&#xA;• external_id VARCHAR(200)&#xA;• request_xml TEXT&#xA;• response_xml TEXT&#xA;• error_message TEXT&#xA;• created_at TIMESTAMPTZ&#xA;• updated_at TIMESTAMPTZ"/>

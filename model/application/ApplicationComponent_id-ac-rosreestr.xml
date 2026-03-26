@@ -1,0 +1,9 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Росреестр (ФГИС ЕГРН)"
+    id="id-ac-rosreestr"
+    documentation="Федеральная государственная информационная система ЕГРН">
+  <properties
+      key="type"
+      value="Внешняя система"/>
+</archimate:ApplicationComponent>

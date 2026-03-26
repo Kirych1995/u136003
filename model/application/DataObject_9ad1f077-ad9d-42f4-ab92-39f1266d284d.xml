@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="cadastre.cadastral_info_version"
+    id="9ad1f077-ad9d-42f4-ab92-39f1266d284d"
+    documentation="D2: Версии кадастровой информации (BO: Версия КИ)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• object_id UUID [NOT NULL]&#xA;• version_number INT [NOT NULL]&#xA;• change_type VARCHAR(50) [NOT NULL]&#xA;• extract_date DATE&#xA;• source_file TEXT&#xA;• is_current BOOLEAN&#xA;• created_at TIMESTAMPTZ&#xA;• created_by VARCHAR(200)"/>

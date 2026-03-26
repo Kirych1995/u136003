@@ -1,0 +1,17 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D3: Регистр обременений"
+    id="id-do-d3-enc"
+    documentation="cadastre.encumbrance_record">
+  <properties
+      key="schema"
+      value="cadastre"/>
+  <properties
+      key="table"
+      value="encumbrance_record"/>
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="swagger_url"
+      value="http://localhost:8080"/>
+</archimate:DataObject>

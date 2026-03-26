@@ -1,0 +1,5 @@
+<archimate:BusinessService
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Передача данных в ERP"
+    id="id-bs-export-erp"
+    documentation="Передача кадастровых данных по земельным участкам в 1С:ERP"/>

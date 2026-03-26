@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D2: Версии КИ"
+    id="id-do-d2"
+    documentation="cadastre.cadastral_info_version">
+  <properties
+      key="schema"
+      value="cadastre"/>
+  <properties
+      key="table"
+      value="cadastral_info_version"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

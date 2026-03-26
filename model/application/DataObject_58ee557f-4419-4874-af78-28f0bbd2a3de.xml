@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="integration.export_queue"
+    id="58ee557f-4419-4874-af78-28f0bbd2a3de"
+    documentation="D6: Очередь отправки данных в ERP/CRM&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• object_id UUID [NOT NULL]&#xA;• target_system VARCHAR(30) [NOT NULL]&#xA;• operation VARCHAR(100) [NOT NULL]&#xA;• priority INT&#xA;• payload JSONB [NOT NULL]&#xA;• status VARCHAR(20)&#xA;• scheduled_at TIMESTAMPTZ&#xA;• picked_at TIMESTAMPTZ&#xA;• exchange_log_id UUID&#xA;• created_at TIMESTAMPTZ"/>

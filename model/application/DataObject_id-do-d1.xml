@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D1: Справочник ОН"
+    id="id-do-d1"
+    documentation="cadastre.real_estate_object">
+  <properties
+      key="schema"
+      value="cadastre"/>
+  <properties
+      key="table"
+      value="real_estate_object"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

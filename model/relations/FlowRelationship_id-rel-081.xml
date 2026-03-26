@@ -1,0 +1,12 @@
+<archimate:FlowRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="XML-выписка"
+    id="id-rel-081">
+  <source
+      xsi:type="archimate:ApplicationComponent"
+      href="ApplicationComponent_id-ac-rosreestr.xml#id-ac-rosreestr"/>
+  <target
+      xsi:type="archimate:ApplicationComponent"
+      href="ApplicationComponent_id-ac-ckd-parser.xml#id-ac-ckd-parser"/>
+</archimate:FlowRelationship>

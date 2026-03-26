@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D9: Регистр заявлений"
+    id="id-do-d9"
+    documentation="statements.statement">
+  <properties
+      key="schema"
+      value="statements"/>
+  <properties
+      key="table"
+      value="statement"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

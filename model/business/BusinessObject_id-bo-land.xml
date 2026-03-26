@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Земельный участок"
+    id="id-bo-land"
+    documentation="BO: ЗУ — основной объект кадастрового учёта">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>
