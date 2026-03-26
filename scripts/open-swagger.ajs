@@ -1,0 +1,49 @@
+/*
+ * open-swagger.ajs
+ * jArchi скрипт: открытие Swagger UI по клику на Application Interface
+ *
+ * Использование:
+ *   1. Добавьте property "swagger_url" на Application Interface в Archi
+ *      Пример: swagger_url = https://api.a101.ru/ckd/v1/swagger-ui.html
+ *   2. Выделите элемент в модели
+ *   3. Scripts → Run Script → open-swagger.ajs
+ *
+ * Дополнительные properties (необязательные):
+ *   - api_version: версия API (v1, v2)
+ *   - auth_type: тип аутентификации (Basic Auth, OAuth2)
+ *   - protocol: протокол (HTTPS, HTTP)
+ *   - cmdb_id: идентификатор в CMDB
+ */
+
+var Desktop = Java.type("java.awt.Desktop");
+var URI = Java.type("java.net.URI");
+
+var selected = selection.first();
+
+if (!selected) {
+    window.alert("Выделите элемент в модели.");
+    exit();
+}
+
+var element = selected.concept ? selected.concept : selected;
+var url = element.prop("swagger_url");
+
+if (url) {
+    var info = "Открываю Swagger для: " + element.name;
+    
+    var apiVersion = element.prop("api_version");
+    var authType = element.prop("auth_type");
+    
+    if (apiVersion) info += "\nВерсия API: " + apiVersion;
+    if (authType) info += "\nАвторизация: " + authType;
+    
+    print(info);
+    Desktop.getDesktop().browse(new URI(url));
+} else {
+    window.alert(
+        "Property 'swagger_url' не задан для элемента:\n" +
+        element.name + "\n\n" +
+        "Добавьте property:\n" +
+        "  swagger_url = https://your-api/swagger-ui.html"
+    );
+}

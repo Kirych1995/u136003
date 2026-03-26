@@ -1,0 +1,213 @@
+/*
+ * import-ddl-to-archimate.ajs
+ * jArchi скрипт: импорт PostgreSQL DDL → ArchiMate Data Objects
+ * 
+ * Что делает:
+ *   1. Парсит DDL-файл (CREATE TABLE, COMMENT ON TABLE)
+ *   2. Создаёт Data Object для каждой таблицы
+ *   3. Колонки → Properties (тип, PK, NOT NULL)
+ *   4. FK → Association relationships между Data Objects
+ *   5. Schema → Grouping элементы
+ *   6. Создаёт View с автоматической расстановкой
+ *   7. Проставляет пустой cmdb_id для дальнейшего маппинга
+ *
+ * Запуск:
+ *   Archi → Scripts → Run Script → выбрать этот файл
+ *   Указать путь к DDL-файлу в диалоге
+ */
+
+var FileDialog = Java.type("org.eclipse.swt.widgets.FileDialog");
+var SWT = Java.type("org.eclipse.swt.SWT");
+var Files = Java.type("java.nio.file.Files");
+var Paths = Java.type("java.nio.file.Paths");
+
+// --- Диалог выбора файла ---
+var dialog = new FileDialog(shell, SWT.OPEN);
+dialog.setText("Выберите DDL-файл (.sql)");
+dialog.setFilterExtensions(["*.sql"]);
+dialog.setFilterNames(["SQL files (*.sql)"]);
+var filePath = dialog.open();
+
+if (!filePath) {
+    window.alert("Файл не выбран. Скрипт отменён.");
+    exit();
+}
+
+// --- Чтение файла ---
+var content = new java.lang.String(Files.readAllBytes(Paths.get(filePath)));
+
+// --- Парсинг ---
+var tables = {};
+var schemas = {};
+var fkRelations = [];
+var comments = {};
+
+// Парсим COMMENT ON TABLE
+var commentRegex = /COMMENT\s+ON\s+TABLE\s+(\S+)\s+IS\s+'([^']+)'/gi;
+var cm;
+while ((cm = commentRegex.exec(content)) !== null) {
+    comments[cm[1].toLowerCase()] = cm[2];
+}
+
+// Парсим CREATE TABLE
+var tableRegex = /CREATE\s+TABLE\s+(?:IF\s+NOT\s+EXISTS\s+)?(\S+)\s*\(([\s\S]*?)\);/gi;
+var match;
+
+while ((match = tableRegex.exec(content)) !== null) {
+    var fullName = match[1];
+    var body = match[2];
+    
+    var parts = fullName.split(".");
+    var schemaName = parts.length > 1 ? parts[0] : "public";
+    var tableName = parts.length > 1 ? parts[1] : parts[0];
+    
+    schemas[schemaName] = true;
+    
+    var columns = [];
+    var lines = body.split("\n");
+    
+    for (var i = 0; i < lines.length; i++) {
+        var line = lines[i].trim();
+        
+        // Пропускаем CONSTRAINT, INDEX, пустые строки
+        if (!line || /^(CONSTRAINT|CREATE|CHECK|\))/i.test(line)) continue;
+        
+        var colMatch = line.match(/^(\w+)\s+([\w().,\s]+?)(?:\s+(PRIMARY\s+KEY|NOT\s+NULL|DEFAULT|REFERENCES|UNIQUE|CHECK).*)?[,]?\s*$/i);
+        if (colMatch) {
+            var colName = colMatch[1];
+            var colType = colMatch[2].trim().replace(/,$/, "");
+            var isPK = /PRIMARY\s+KEY/i.test(line);
+            var isNotNull = /NOT\s+NULL/i.test(line) || isPK;
+            
+            // FK
+            var fkMatch = line.match(/REFERENCES\s+(\S+)\s*\((\w+)\)/i);
+            if (fkMatch) {
+                fkRelations.push({
+                    from: fullName.toLowerCase(),
+                    to: fkMatch[1].toLowerCase(),
+                    column: colName
+                });
+            }
+            
+            columns.push({
+                name: colName,
+                type: colType,
+                isPK: isPK,
+                isNotNull: isNotNull
+            });
+        }
+    }
+    
+    tables[fullName.toLowerCase()] = {
+        schema: schemaName,
+        name: tableName,
+        fullName: fullName,
+        columns: columns,
+        comment: comments[fullName.toLowerCase()] || ""
+    };
+}
+
+// --- Создание элементов ArchiMate ---
+
+// Создаём папку для импорта
+var folder = $("folder.Application").first();
+if (!folder) {
+    window.alert("Не найдена папка Application. Откройте модель в Archi.");
+    exit();
+}
+
+// Группы для схем
+var schemaGroups = {};
+for (var s in schemas) {
+    var group = model.createElement("grouping", "Schema: " + s);
+    group.prop("source", "DDL import");
+    schemaGroups[s] = group;
+}
+
+// Data Objects для таблиц
+var dataObjects = {};
+var count = 0;
+
+for (var key in tables) {
+    var t = tables[key];
+    var doName = t.schema + "." + t.name;
+    var dataObj = model.createElement("data-object", doName);
+    
+    // Properties: колонки
+    for (var c = 0; c < t.columns.length; c++) {
+        var col = t.columns[c];
+        var propValue = col.type;
+        if (col.isPK) propValue += " [PK]";
+        if (col.isNotNull && !col.isPK) propValue += " [NOT NULL]";
+        dataObj.prop(col.name, propValue);
+    }
+    
+    // Метаданные
+    dataObj.prop("cmdb_id", "");
+    dataObj.prop("source", "DDL import");
+    dataObj.prop("schema", t.schema);
+    
+    if (t.comment) {
+        dataObj.documentation = t.comment;
+    }
+    
+    // Связь с группой схемы
+    if (schemaGroups[t.schema]) {
+        model.createRelationship("composition-relationship", schemaGroups[t.schema], dataObj);
+    }
+    
+    dataObjects[key] = dataObj;
+    count++;
+}
+
+// FK → Association relationships
+var relCount = 0;
+for (var r = 0; r < fkRelations.length; r++) {
+    var fk = fkRelations[r];
+    var fromObj = dataObjects[fk.from];
+    var toObj = dataObjects[fk.to];
+    if (fromObj && toObj) {
+        var rel = model.createRelationship("association-relationship", fromObj, toObj);
+        rel.name = "FK: " + fk.column;
+        relCount++;
+    }
+}
+
+// --- Создание View ---
+var view = model.createArchimateView("ЦКД — Data Objects (DDL import)");
+
+var xPos = 50;
+var yPos = 50;
+var boxW = 200;
+var boxH = 40;
+var gap = 30;
+var colCount = 3;
+var col = 0;
+
+// Сначала группы
+for (var sg in schemaGroups) {
+    var gObj = view.add(schemaGroups[sg], xPos, yPos, 660, 30);
+    yPos += 50;
+}
+
+// Затем Data Objects
+yPos = 120;
+xPos = 50;
+col = 0;
+
+for (var dk in dataObjects) {
+    var dObj = view.add(dataObjects[dk], xPos + col * (boxW + gap), yPos, boxW, boxH);
+    col++;
+    if (col >= colCount) {
+        col = 0;
+        yPos += boxH + gap;
+    }
+}
+
+window.alert(
+    "Импорт завершён!\n\n" +
+    "Data Objects: " + count + "\n" +
+    "FK Associations: " + relCount + "\n" +
+    "Schemas: " + Object.keys(schemas).length + "\n\n" +
+    "Создан View: ЦКД — Data Objects (DDL import)"
+);

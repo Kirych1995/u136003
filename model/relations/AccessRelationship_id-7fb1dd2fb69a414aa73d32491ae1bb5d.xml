@@ -1,0 +1,11 @@
+<archimate:AccessRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    id="id-7fb1dd2fb69a414aa73d32491ae1bb5d">
+  <source
+      xsi:type="archimate:ApplicationService"
+      href="ApplicationService_id-as-export-erp.xml#id-as-export-erp"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_2548639c-f793-469c-9acd-66747c83e7fb.xml#2548639c-f793-469c-9acd-66747c83e7fb"/>
+</archimate:AccessRelationship>
