@@ -1,0 +1,11 @@
+<archimate:RealizationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    id="id-a943926fd16a4256a205a8a82c49a3b2">
+  <source
+      xsi:type="archimate:ApplicationComponent"
+      href="ApplicationComponent_id-ac-ckd-parser.xml#id-ac-ckd-parser"/>
+  <target
+      xsi:type="archimate:BusinessService"
+      href="BusinessService_id-73701c7ea4044926bf449cbe7c2a1cef.xml#id-73701c7ea4044926bf449cbe7c2a1cef"/>
+</archimate:RealizationRelationship>

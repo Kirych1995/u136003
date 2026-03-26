@@ -204,8 +204,8 @@
       id="id-ad09a414bf754e59aa17f309f3b6fd20"
       targetConnections="id-645cd9080d904cd1b2267577e9d70ca6">
     <bounds
-        x="556"
-        y="815"
+        x="432"
+        y="804"
         width="120"
         height="55"/>
     <archimateElement
@@ -340,17 +340,5 @@
     <archimateElement
         xsi:type="archimate:DataObject"
         href="DataObject_a6dbdc8f-3695-4fce-bff3-d876233f7ab3.xml#a6dbdc8f-3695-4fce-bff3-d876233f7ab3"/>
-  </children>
-  <children
-      xsi:type="archimate:DiagramModelArchimateObject"
-      id="id-ce54cafe678d44ccbf0bfd913d633037">
-    <bounds
-        x="219"
-        y="900"
-        width="120"
-        height="55"/>
-    <archimateElement
-        xsi:type="archimate:ApplicationService"
-        href="ApplicationService_id-as-export-erp.xml#id-as-export-erp"/>
   </children>
 </archimate:ArchimateDiagramModel>

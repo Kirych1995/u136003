@@ -1,4 +1,5 @@
 <archimate:DataObject
     xmlns:archimate="http://www.archimatetool.com/archimate"
     name="PostLandExportRequest (JSON)"
-    id="id-3f519db49b444e7b8f779a08022d079e"/>
+    id="id-3f519db49b444e7b8f779a08022d079e"
+    documentation="Регистр прав на объекты недвижимости (BO: Право)&#xD;&#xA;&#xD;&#xA;Колонки:&#xD;&#xA;• id UUID [PK]&#xD;&#xA;• object_id UUID [NOT NULL]&#xD;&#xA;• right_type_id INT [NOT NULL]&#xD;&#xA;• registration_number VARCHAR(100)&#xD;&#xA;• registration_date DATE&#xD;&#xA;• holder_name TEXT [NOT NULL]&#xD;&#xA;• holder_inn VARCHAR(12)&#xD;&#xA;• share_numerator INT&#xD;&#xA;• share_denominator INT&#xD;&#xA;• version_id UUID&#xD;&#xA;• is_active BOOLEAN&#xD;&#xA;• created_at TIMESTAMPTZ&#xD;&#xA;• updated_at TIMESTAMPTZ"/>

@@ -8,8 +8,8 @@
       id="id-e0c4463b51304f39a32880ae3d967feb"
       targetConnections="id-e96d26ccd71246c9a3bb77db9aeb572f">
     <bounds
-        x="385"
-        y="158"
+        x="408"
+        y="96"
         width="120"
         height="55"/>
     <archimateElement
@@ -182,8 +182,8 @@
       id="id-b69dc480450447e8bbe8d36e59f03d22"
       targetConnections="id-3140ad70e5ce4c1394c1236ff9c50296">
     <bounds
-        x="253"
-        y="838"
+        x="336"
+        y="867"
         width="120"
         height="55"/>
     <archimateElement
@@ -405,8 +405,8 @@
       id="id-206ac51e138c499dbafe6f3624c89d5e"
       targetConnections="id-e43e3451c18d487581b6d6e6d1045252">
     <bounds
-        x="60"
-        y="684"
+        x="-10"
+        y="598"
         width="120"
         height="55"/>
     <archimateElement
@@ -484,8 +484,8 @@
           href="FlowRelationship_id-rel-064.xml#id-rel-064"/>
     </sourceConnections>
     <bounds
-        x="1035"
-        y="538"
+        x="696"
+        y="564"
         width="120"
         height="55"/>
     <archimateElement
@@ -607,8 +607,8 @@
           href="FlowRelationship_id-rel-070.xml#id-rel-070"/>
     </sourceConnections>
     <bounds
-        x="825"
-        y="285"
+        x="680"
+        y="434"
         width="120"
         height="55"/>
     <archimateElement
