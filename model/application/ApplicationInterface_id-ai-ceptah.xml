@@ -1,0 +1,8 @@
+<archimate:ApplicationInterface
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Ceptah (Jira ↔ MS Project)"
+    id="id-ai-ceptah"
+    documentation="Плагин синхронизации задач">
+  <properties
+      key="cmdb_id"/>
+</archimate:ApplicationInterface>

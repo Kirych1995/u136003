@@ -1,0 +1,5 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Модуль интеграции"
+    id="id-ac-ckd-integration"
+    documentation="HTTP-сервисы push-модели: отправка данных в CRM и ERP"/>

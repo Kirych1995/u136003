@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D8: Запросы к Росреестру"
+    id="id-do-d8"
+    documentation="rosreestr.request_log">
+  <properties
+      key="schema"
+      value="rosreestr"/>
+  <properties
+      key="table"
+      value="request_log"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="statements.statement"
+    id="bd26b0c8-611d-49af-be9d-cb3285c1710c"
+    documentation="D9: Регистр заявлений (BO: Заявление)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• number VARCHAR(50) [NOT NULL]&#xA;• statement_type VARCHAR(50) [NOT NULL]&#xA;• object_id UUID&#xA;• status_id INT [NOT NULL]&#xA;• initiator_name TEXT [NOT NULL]&#xA;• initiator_email VARCHAR(200)&#xA;• signer_name TEXT&#xA;• signer_position VARCHAR(200)&#xA;• signed_at TIMESTAMPTZ&#xA;• sent_at TIMESTAMPTZ&#xA;• rosreestr_id VARCHAR(100)&#xA;• created_at TIMESTAMPTZ&#xA;• updated_at TIMESTAMPTZ"/>

@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Право"
+    id="id-bo-right"
+    documentation="BO: Право — зарегистрированное право на объект недвижимости">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

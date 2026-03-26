@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ref.object_type"
+    id="8eb34ba0-a582-4db9-ab68-5b7d234abe1b"
+    documentation="Справочник типов объектов недвижимости&#xA;&#xA;Колонки:&#xA;• id SERIAL [PK]&#xA;• code VARCHAR(50) [NOT NULL]&#xA;• name VARCHAR(200) [NOT NULL]&#xA;• description TEXT"/>

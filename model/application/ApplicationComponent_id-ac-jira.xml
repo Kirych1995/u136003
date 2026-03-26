@@ -1,0 +1,11 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Jira"
+    id="id-ac-jira"
+    documentation="Управление задачами. 2500 пользователей, 119 проектов.">
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="users"
+      value="2500"/>
+</archimate:ApplicationComponent>

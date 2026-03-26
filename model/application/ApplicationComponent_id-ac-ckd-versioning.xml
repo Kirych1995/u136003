@@ -1,0 +1,5 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Модуль версионирования"
+    id="id-ac-ckd-versioning"
+    documentation="Управление версиями КИ: атрибутивные, правовые, структурные изменения"/>

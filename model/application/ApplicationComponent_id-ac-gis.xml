@@ -1,0 +1,11 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="GIS (EverGIS)"
+    id="id-ac-gis"
+    documentation="Геоинформационная система. Потребляет MV из DWH.">
+  <properties
+      key="cmdb_id"/>
+  <properties
+      key="platform"
+      value="EverGIS + PostGIS"/>
+</archimate:ApplicationComponent>

@@ -1,0 +1,12 @@
+<archimate:AssociationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="FK → cadastre.real_estate_object"
+    id="a4622a58-2ee7-41b3-acc3-324ffda59982">
+  <source
+      xsi:type="archimate:DataObject"
+      href="DataObject_9ad1f077-ad9d-42f4-ab92-39f1266d284d.xml#9ad1f077-ad9d-42f4-ab92-39f1266d284d"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_2548639c-f793-469c-9acd-66747c83e7fb.xml#2548639c-f793-469c-9acd-66747c83e7fb"/>
+</archimate:AssociationRelationship>

@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Обременение"
+    id="id-bo-encumbrance"
+    documentation="BO: Обременение — ограничение права (арест, ипотека, аренда, сервитут)">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

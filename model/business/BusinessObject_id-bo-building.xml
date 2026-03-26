@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Здание"
+    id="id-bo-building"
+    documentation="BO: Здание — объект капитального строительства">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

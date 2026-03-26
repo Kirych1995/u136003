@@ -1,0 +1,12 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="PostLandExportRequest"
+    id="id-do-land-export"
+    documentation="JSON-контракт: земельный участок → ERP">
+  <properties
+      key="format"
+      value="JSON"/>
+  <properties
+      key="direction"
+      value="ЦКД → ERP"/>
+</archimate:DataObject>

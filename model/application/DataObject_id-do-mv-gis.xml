@@ -1,0 +1,12 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="MV: Витрины для GIS"
+    id="id-do-mv-gis"
+    documentation="Материализованные представления в DWH для GIS">
+  <properties
+      key="source"
+      value="DWH"/>
+  <properties
+      key="consumer"
+      value="EverGIS"/>
+</archimate:DataObject>

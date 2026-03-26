@@ -1,0 +1,12 @@
+<archimate:AssociationRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="FK → statements.statement"
+    id="0a31f684-da95-40d2-b7b5-07448e5bfe66">
+  <source
+      xsi:type="archimate:DataObject"
+      href="DataObject_0cb2f35c-9192-4b96-a5c6-64c158d74567.xml#0cb2f35c-9192-4b96-a5c6-64c158d74567"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_bd26b0c8-611d-49af-be9d-cb3285c1710c.xml#bd26b0c8-611d-49af-be9d-cb3285c1710c"/>
+</archimate:AssociationRelationship>

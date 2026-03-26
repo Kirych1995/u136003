@@ -1,0 +1,22 @@
+<archimate:ApplicationInterface
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="HTTP: ЦКД → CRM"
+    id="id-ai-ckd-crm"
+    documentation="POST /hs/ckd/v1/objects — передача объектов с помещениями">
+  <properties
+      key="swagger_url"/>
+  <properties
+      key="api_version"
+      value="v1"/>
+  <properties
+      key="auth_type"
+      value="Basic Auth"/>
+  <properties
+      key="protocol"
+      value="HTTPS"/>
+  <properties
+      key="contract"
+      value="JSON"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:ApplicationInterface>

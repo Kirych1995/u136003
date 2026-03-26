@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="cadastre.real_estate_object"
+    id="2548639c-f793-469c-9acd-66747c83e7fb"
+    documentation="D1: Справочник объектов недвижимости (BO: ЗУ, Здание, Помещение)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• cadastral_number VARCHAR(30) [NOT NULL]&#xA;• object_type_id INT [NOT NULL]&#xA;• address TEXT&#xA;• area NUMERIC(15,2)&#xA;• area_unit VARCHAR(10)&#xA;• parent_id UUID&#xA;• status VARCHAR(30)&#xA;• created_at TIMESTAMPTZ&#xA;• updated_at TIMESTAMPTZ"/>

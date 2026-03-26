@@ -1,0 +1,14 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="D6: Лог обмена ERP/CRM"
+    id="id-do-d6"
+    documentation="integration.exchange_log">
+  <properties
+      key="schema"
+      value="integration"/>
+  <properties
+      key="table"
+      value="exchange_log"/>
+  <properties
+      key="cmdb_id"/>
+</archimate:DataObject>

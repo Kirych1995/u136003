@@ -1,0 +1,12 @@
+<archimate:AccessRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="W"
+    id="id-rel-050">
+  <source
+      xsi:type="archimate:ApplicationInterface"
+      href="ApplicationInterface_id-ai-ckd-crm.xml#id-ai-ckd-crm"/>
+  <target
+      xsi:type="archimate:DataObject"
+      href="DataObject_id-do-obj-rooms.xml#id-do-obj-rooms"/>
+</archimate:AccessRelationship>

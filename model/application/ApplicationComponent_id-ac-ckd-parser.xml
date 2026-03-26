@@ -1,0 +1,5 @@
+<archimate:ApplicationComponent
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Модуль парсинга XML"
+    id="id-ac-ckd-parser"
+    documentation="Парсинг XML-выписок ЕГРН, извлечение кадастровых данных"/>

@@ -1,0 +1,11 @@
+<archimate:ServingRelationship
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    id="id-rel-100">
+  <source
+      xsi:type="archimate:BusinessService"
+      href="BusinessService_id-bs-cadastre.xml#id-bs-cadastre"/>
+  <target
+      xsi:type="archimate:BusinessActor"
+      href="BusinessActor_id-ba-analyst.xml#id-ba-analyst"/>
+</archimate:ServingRelationship>

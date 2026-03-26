@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="cadastre.right_record"
+    id="1156eae1-d7f4-4989-8e49-15766d4956fb"
+    documentation="D3: Регистр прав на объекты недвижимости (BO: Право)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• object_id UUID [NOT NULL]&#xA;• right_type_id INT [NOT NULL]&#xA;• registration_number VARCHAR(100)&#xA;• registration_date DATE&#xA;• holder_name TEXT [NOT NULL]&#xA;• holder_inn VARCHAR(12)&#xA;• share_numerator INT&#xA;• share_denominator INT&#xA;• version_id UUID&#xA;• is_active BOOLEAN&#xA;• created_at TIMESTAMPTZ&#xA;• updated_at TIMESTAMPTZ"/>

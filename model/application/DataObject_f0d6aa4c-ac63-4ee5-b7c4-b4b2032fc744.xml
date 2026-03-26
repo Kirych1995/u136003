@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="integration.exchange_log"
+    id="f0d6aa4c-ac63-4ee5-b7c4-b4b2032fc744"
+    documentation="D6: Лог обмена с ERP и CRM (DO: PostLandExportRequest, ObjectWithRoomsRequest)&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• direction VARCHAR(10) [NOT NULL]&#xA;• target_system VARCHAR(30) [NOT NULL]&#xA;• operation VARCHAR(100) [NOT NULL]&#xA;• endpoint_url TEXT&#xA;• request_body JSONB&#xA;• response_body JSONB&#xA;• http_status INT&#xA;• status_id INT [NOT NULL]&#xA;• error_message TEXT&#xA;• object_id UUID&#xA;• retry_count INT&#xA;• correlation_id UUID&#xA;• created_at TIMESTAMPTZ&#xA;• completed_at TIMESTAMPTZ"/>

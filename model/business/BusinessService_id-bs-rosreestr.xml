@@ -1,0 +1,5 @@
+<archimate:BusinessService
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Запрос выписок Росреестра"
+    id="id-bs-rosreestr"
+    documentation="Формирование и отправка запросов в Росреестр, получение выписок ЕГРН"/>

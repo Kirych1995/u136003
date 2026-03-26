@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="statements.statement_approval"
+    id="0cb2f35c-9192-4b96-a5c6-64c158d74567"
+    documentation="D9: Маршрут согласования заявления&#xA;&#xA;Колонки:&#xA;• id UUID [PK]&#xA;• statement_id UUID [NOT NULL]&#xA;• approver_name TEXT [NOT NULL]&#xA;• approver_role VARCHAR(100)&#xA;• decision VARCHAR(20) [NOT NULL]&#xA;• comment TEXT&#xA;• decided_at TIMESTAMPTZ"/>

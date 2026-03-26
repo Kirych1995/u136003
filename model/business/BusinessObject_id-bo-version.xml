@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Версия КИ"
+    id="id-bo-version"
+    documentation="BO: Версия кадастровой информации (атрибутивная/правовая/структурная)">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

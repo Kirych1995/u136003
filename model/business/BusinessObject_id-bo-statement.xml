@@ -1,0 +1,8 @@
+<archimate:BusinessObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="Заявление"
+    id="id-bo-statement"
+    documentation="BO: Заявление — запрос выписки или иное обращение в Росреестр">
+  <properties
+      key="cmdb_id"/>
+</archimate:BusinessObject>

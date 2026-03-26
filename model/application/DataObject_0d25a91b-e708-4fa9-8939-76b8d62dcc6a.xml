@@ -1,0 +1,5 @@
+<archimate:DataObject
+    xmlns:archimate="http://www.archimatetool.com/archimate"
+    name="ref.right_type"
+    id="0d25a91b-e708-4fa9-8939-76b8d62dcc6a"
+    documentation="Справочник видов прав&#xA;&#xA;Колонки:&#xA;• id SERIAL [PK]&#xA;• code VARCHAR(50) [NOT NULL]&#xA;• name VARCHAR(200) [NOT NULL]"/>
