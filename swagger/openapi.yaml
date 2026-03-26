@@ -1,0 +1,377 @@
+openapi: "3.0.3"
+info:
+  title: ЦКД — HTTP-сервисы
+  description: |
+    Центр Кадастровых Данных (ЦКД) — HTTP-сервисы для интеграции с 1С ERP и CRM.
+    Мастер-система кадастровых данных ЕГРН, push-модель обмена.
+  version: "1.0.0"
+  contact:
+    name: Команда ЦКД
+    email: ckd@a101.ru
+
+servers:
+  - url: http://localhost:8080/hs/ckd/v1
+    description: Локальная среда (демо)
+
+tags:
+  - name: land-plots
+    description: Экспорт земельных участков в ERP
+  - name: objects
+    description: Экспорт объектов с помещениями в CRM
+  - name: references
+    description: Справочные данные
+  - name: monitoring
+    description: Мониторинг и статистика обмена
+
+paths:
+  /land-plots/export:
+    post:
+      tags: [land-plots]
+      summary: Экспорт земельного участка в ERP
+      operationId: postLandExportRequest
+      description: |
+        Передаёт данные ЗУ (кадастровый номер, площадь, права, обременения)
+        в 1С ERP для учёта земельного банка. Формирует запись в exchange_log.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LandExportRequest'
+            example:
+              cadastral_number: "77:17:0120114:1001"
+              include_rights: true
+              include_encumbrances: true
+      responses:
+        '200':
+          description: Данные успешно переданы в ERP
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+              example:
+                status: "SUCCESS"
+                exchange_id: "f47ac10b-58cc-4372-a567-0e02b2c3d479"
+                target_system: "ERP"
+                message: "Земельный участок 77:17:0120114:1001 передан в ERP"
+        '404':
+          description: Объект не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Ошибка при передаче
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /objects/export:
+    post:
+      tags: [objects]
+      summary: Экспорт объекта с помещениями в CRM
+      operationId: objectWithRoomsRequest
+      description: |
+        Передаёт данные здания с вложенными помещениями в 1С CRM.
+        Используется для актуализации каталога квартир/помещений.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ObjectWithRoomsRequest'
+            example:
+              cadastral_number: "77:17:0120114:2001"
+              include_rooms: true
+              include_rights: true
+      responses:
+        '200':
+          description: Данные успешно переданы в CRM
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExportResponse'
+              example:
+                status: "SUCCESS"
+                exchange_id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890"
+                target_system: "CRM"
+                message: "Здание 77:17:0120114:2001 с 2 помещениями передано в CRM"
+        '404':
+          description: Объект не найден
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /objects/{cadastral_number}:
+    get:
+      tags: [objects]
+      summary: Получить объект по кадастровому номеру
+      operationId: getObjectByCadastralNumber
+      parameters:
+        - name: cadastral_number
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "77:17:0120114:1001"
+      responses:
+        '200':
+          description: Данные объекта
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RealEstateObject'
+        '404':
+          description: Объект не найден
+
+  /objects/{cadastral_number}/rights:
+    get:
+      tags: [objects]
+      summary: Актуальные права на объект
+      operationId: getObjectRights
+      parameters:
+        - name: cadastral_number
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "77:17:0120114:1001"
+      responses:
+        '200':
+          description: Список актуальных прав
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RightRecord'
+
+  /objects/{cadastral_number}/encumbrances:
+    get:
+      tags: [objects]
+      summary: Актуальные обременения объекта
+      operationId: getObjectEncumbrances
+      parameters:
+        - name: cadastral_number
+          in: path
+          required: true
+          schema:
+            type: string
+          example: "77:17:0120114:1001"
+      responses:
+        '200':
+          description: Список актуальных обременений
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EncumbranceRecord'
+
+  /references/object-types:
+    get:
+      tags: [references]
+      summary: Справочник типов объектов
+      operationId: getObjectTypes
+      responses:
+        '200':
+          description: Список типов
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReferenceItem'
+              example:
+                - id: 1
+                  code: "LAND_PLOT"
+                  name: "Земельный участок"
+                - id: 2
+                  code: "BUILDING"
+                  name: "Здание"
+                - id: 3
+                  code: "ROOM"
+                  name: "Помещение"
+
+  /exchange/log:
+    get:
+      tags: [monitoring]
+      summary: Лог обмена с ERP/CRM
+      operationId: getExchangeLog
+      parameters:
+        - name: target_system
+          in: query
+          schema:
+            type: string
+            enum: [ERP, CRM]
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [PENDING, SENT, SUCCESS, ERROR, RETRY]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: Записи лога обмена
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExchangeLogEntry'
+
+components:
+  schemas:
+    LandExportRequest:
+      type: object
+      required: [cadastral_number]
+      properties:
+        cadastral_number:
+          type: string
+          description: Кадастровый номер ЗУ
+          example: "77:17:0120114:1001"
+        include_rights:
+          type: boolean
+          default: true
+          description: Включить актуальные права
+        include_encumbrances:
+          type: boolean
+          default: true
+          description: Включить актуальные обременения
+
+    ObjectWithRoomsRequest:
+      type: object
+      required: [cadastral_number]
+      properties:
+        cadastral_number:
+          type: string
+          description: Кадастровый номер здания
+          example: "77:17:0120114:2001"
+        include_rooms:
+          type: boolean
+          default: true
+          description: Включить вложенные помещения
+        include_rights:
+          type: boolean
+          default: false
+          description: Включить права на помещения
+
+    ExportResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [SUCCESS, ERROR, QUEUED]
+        exchange_id:
+          type: string
+          format: uuid
+          description: ID записи в exchange_log
+        target_system:
+          type: string
+          enum: [ERP, CRM]
+        message:
+          type: string
+
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "ERROR"
+        code:
+          type: string
+          example: "OBJECT_NOT_FOUND"
+        message:
+          type: string
+          example: "Объект с кадастровым номером 77:17:0120114:9999 не найден"
+
+    RealEstateObject:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        cadastral_number:
+          type: string
+        object_type:
+          type: string
+        address:
+          type: string
+        area:
+          type: number
+        area_unit:
+          type: string
+        status:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/RealEstateObject'
+
+    RightRecord:
+      type: object
+      properties:
+        right_type:
+          type: string
+        registration_number:
+          type: string
+        registration_date:
+          type: string
+          format: date
+        holder_name:
+          type: string
+        holder_inn:
+          type: string
+
+    EncumbranceRecord:
+      type: object
+      properties:
+        encumbrance_type:
+          type: string
+        registration_number:
+          type: string
+        start_date:
+          type: string
+          format: date
+        end_date:
+          type: string
+          format: date
+        holder_name:
+          type: string
+
+    ReferenceItem:
+      type: object
+      properties:
+        id:
+          type: integer
+        code:
+          type: string
+        name:
+          type: string
+
+    ExchangeLogEntry:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        direction:
+          type: string
+          enum: [OUTBOUND, INBOUND]
+        target_system:
+          type: string
+        operation:
+          type: string
+        http_status:
+          type: integer
+        status:
+          type: string
+        created_at:
+          type: string
+          format: date-time
